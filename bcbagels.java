@@ -1,20 +1,55 @@
 /*
  /*
  Brandon Gerber
- 	10/26/2023
+ 	10/19/2023
  	COP1250C
  	BCBAGELS.JAVA
  */
+
+/*
+- define menu items and prices
+ bagels, butter, eggs, bacon, cream cheese
+  1.0,0.5,2.75,1.0.2.25
+ 
+ initialize variables
+taxrate = 0.07
+itemquantities = 0, 0, 0, 0, 0
+totalamount = 0.0
+itemsubtotals = 0.0, 0.0, 0.0, 0.0, 0.0
+ordersubtotal = 0.0
+taxamount = 0.0
+
+-open scanner
+
+-display menu
+"choose an item"
+"exit"
+
+-calculate subtotal with tax and then the total
+ordersubtotal += itemsubtotals[i]
+tax amount= ordersubtotal *taxrate
+totalamount = ordersubtotal + taxamount
+
+-display the final bill
+"item quantity subtotal"
+"---------------"
+
+
+-close scanner
+
+ */
+
 package bcbagels;
 
 import java.util.Scanner;
 
 public class bcbagels {
     public static void main(String[] args) {
+        // Define menu items and their prices
         String[] menuItems = {"Bagel", "Butter", "Cream Cheese", "Eggs", "Bacon"};
         double[] itemPrices = {1.00, 0.50, 1.00, 2.75, 2.25};
 
-        // intialize all variables 
+        // Initialize variables
         int[] itemQuantities = new int[menuItems.length];
         double[] itemSubtotals = new double[menuItems.length];
         double orderSubtotal = 0.0;
@@ -24,7 +59,7 @@ public class bcbagels {
 
         Scanner scanner = new Scanner(System.in);
 
-        // menu and user inputs
+        // Display the menu and process user input
         while (true) {
             System.out.println("Please choose an item:");
             for (int i = 0; i < menuItems.length; i++) {
@@ -50,10 +85,10 @@ public class bcbagels {
             }
 
             if (userChoice == menuItems.length + 1) {
-                // option to exit and recieve final score
+                // User chose to exit and get their final total
                 break;
             } else {
-                // option to choose an item
+                // User chose an item
                 int itemIndex = userChoice - 1;
                 System.out.print("Enter the quantity: ");
                 int quantity = scanner.nextInt();
@@ -65,7 +100,7 @@ public class bcbagels {
             }
         }
 
-        // calculate the subtotal, tax, and total
+        // Calculate the subtotal, tax, and total
         for (int i = 0; i < menuItems.length; i++) {
             orderSubtotal += itemSubtotals[i];
         }
@@ -73,7 +108,7 @@ public class bcbagels {
         taxAmount = orderSubtotal * taxRate;
         totalAmount = orderSubtotal + taxAmount;
 
-        // display the final bill
+        // Display the final bill
         System.out.println("Item Quantity Subtotal");
         System.out.println("-----------------------");
         for (int i = 0; i < menuItems.length; i++) {
@@ -91,7 +126,7 @@ public class bcbagels {
         System.out.println("Tax: " + (taxFormatted.endsWith(".00") ? taxFormatted.substring(0, taxFormatted.length() - 3) : taxFormatted));
         System.out.println("Total: " + (totalFormatted.endsWith(".00") ? totalFormatted.substring(0, totalFormatted.length() - 3) : totalFormatted));
 
-       
+        // Close the scanner
         scanner.close();
     }
 }
